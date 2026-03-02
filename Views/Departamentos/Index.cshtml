@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SistemaNomina.Models.Department>
+@{
+    ViewData["Title"] = "Departamentos";
+}
+
+<h2>Departamentos</h2>
+<a href="/Departamentos/Crear" class="btn btn-primary mb-3">+ Nuevo Departamento</a>
+
+<form method="get">
+    <input name="buscar" value="@ViewBag.Buscar" placeholder="Buscar..." class="form-control w-25 d-inline" />
+    <button class="btn btn-secondary">Buscar</button>
+</form>
+<br />
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Nro</th>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.dept_no</td>
+                <td>@d.dept_name</td>
+                <td>@(d.activo ? "Activo" : "Inactivo")</td>
+                <td>
+                    <a href="/Departamentos/Editar/@d.dept_no" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="/Departamentos/Desactivar/@d.dept_no" class="btn btn-danger btn-sm">Desactivar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,15 @@
+﻿@model SistemaNomina.Models.Department
+@{
+    ViewData["Title"] = "Editar Departamento";
+}
+
+<h2>Editar Departamento</h2>
+<form method="post">
+    <input asp-for="dept_no" type="hidden" />
+    <div class="mb-3">
+        <label>Nombre del Departamento</label>
+        <input asp-for="dept_name" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="/Departamentos" class="btn btn-secondary">Cancelar</a>
+</form>
