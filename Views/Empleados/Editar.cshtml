@@ -1,0 +1,42 @@
+﻿@model SistemaNomina.Models.Employee
+@{
+    ViewData["Title"] = "Editar Empleado";
+}
+
+<h2>Editar Empleado</h2>
+<form method="post">
+    <input asp-for="emp_no" type="hidden" />
+    <div class="mb-3">
+        <label>CI</label>
+        <input asp-for="ci" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input asp-for="first_name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Apellido</label>
+        <input asp-for="last_name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Fecha Nacimiento</label>
+        <input asp-for="birth_date" type="date" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Género</label>
+        <select asp-for="gender" class="form-control">
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Fecha Contratación</label>
+        <input asp-for="hire_date" type="date" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Correo</label>
+        <input asp-for="correo" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="/Empleados" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SistemaNomina.Models.Employee>
+@{
+    ViewData["Title"] = "Empleados";
+}
+
+<h2>Empleados</h2>
+<a href="/Empleados/Crear" class="btn btn-primary mb-3">+ Nuevo Empleado</a>
+
+<form method="get">
+    <input name="buscar" value="@ViewBag.Buscar" placeholder="Buscar..." class="form-control w-25 d-inline" />
+    <button class="btn btn-secondary">Buscar</button>
+</form>
+<br />
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Nro</th>
+            <th>Nombre</th>
+            <th>CI</th>
+            <th>Correo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.emp_no</td>
+                <td>@e.first_name @e.last_name</td>
+                <td>@e.ci</td>
+                <td>@e.correo</td>
+                <td>@(e.activo ? "Activo" : "Inactivo")</td>
+                <td>
+                    <a href="/Empleados/Ver/@e.emp_no" class="btn btn-info btn-sm">Ver</a>
+                    <a href="/Empleados/Editar/@e.emp_no" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="/Empleados/Desactivar/@e.emp_no" class="btn btn-danger btn-sm">Desactivar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
