@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SistemaNomina.Models;
 using Microsoft.EntityFrameworkCore;
+using SistemaNomina.Models;
 
 namespace SistemaNomina.Controllers
 {
@@ -58,6 +58,14 @@ namespace SistemaNomina.Controllers
             }
             ViewBag.Empleados = _context.Employees.Where(e => e.activo).ToList();
             return View(sal);
+        }
+
+        public async Task<IActionResult> Auditoria()
+        {
+            var logs = await _context.LogAuditoriaSalarios
+                .OrderByDescending(l => l.fechaActualizacion)
+                .ToListAsync();
+            return View(logs);
         }
     }
 }
