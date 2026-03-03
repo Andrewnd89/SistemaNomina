@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SistemaNomina.Models.DeptManager>
+@{
+    ViewData["Title"] = "Gerentes de Departamento";
+}
+
+<h2>Gerentes de Departamento</h2>
+<a href="/DeptManager/Crear" class="btn btn-primary mb-3">+ Asignar Gerente</a>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Empleado (Gerente)</th>
+            <th>Departamento</th>
+            <th>Desde</th>
+            <th>Hasta</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.Employee?.first_name @m.Employee?.last_name</td>
+                <td>@m.Department?.dept_name</td>
+                <td>@m.from_date.ToShortDateString()</td>
+                <td>@(m.to_date.HasValue? m.to_date.Value.ToShortDateString() : "Activo")</td>
+                <td>@(m.to_date == null ? "Vigente" : "Cerrado")</td>
+                <td>
+                    @if (m.to_date == null)
+                    {
+                        <a href="/DeptManager/Terminar/@m.id" class="btn btn-danger btn-sm">Terminar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

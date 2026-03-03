@@ -1,25 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SistemaNomina.Models;
-using System.Diagnostics;
 
 namespace SistemaNomina.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
         {
-            return View();
+            _context = context;
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.TotalEmpleados = await _context.Employees.CountAsync(e => e.activo);
+            ViewBag.TotalDepartamentos = await _context.Departments.CountAsync(d => d.activo);
+            ViewBag.TotalSalarios = await _context.Salaries.CountAsync(s => s.to_date == null);
+            ViewBag.TotalTitulos = await _context.Titles.CountAsync(t => t.to_date == null);
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
