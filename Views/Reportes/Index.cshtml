@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Reportes";
+}
+
+<h2>Reportes</h2>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h5>Reporte de Empleados</h5>
+            </div>
+            <div class="card-body">
+                <p>Exporta la lista completa de empleados.</p>
+                <a href="/Reportes/ExportarEmpleadosExcel" class="btn btn-success">
+                    📊 Exportar Excel
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h5>Reporte de Salarios</h5>
+            </div>
+            <div class="card-body">
+                <p>Exporta el historial completo de salarios.</p>
+                <a href="/Reportes/ExportarSalariosExcel" class="btn btn-success">
+                    📊 Exportar Excel
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
