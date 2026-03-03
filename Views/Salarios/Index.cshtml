@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SistemaNomina.Models.Salary>
+@{
+    ViewData["Title"] = "Salarios";
+}
+
+<h2>Salarios</h2>
+<a href="/Salarios/Crear" class="btn btn-primary mb-3">+ Nuevo Salario</a>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Empleado</th>
+            <th>Salario</th>
+            <th>Desde</th>
+            <th>Hasta</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Employee?.first_name @s.Employee?.last_name</td>
+                <td>$@s.salary</td>
+                <td>@s.from_date.ToShortDateString()</td>
+                <td>@(s.to_date.HasValue? s.to_date.Value.ToShortDateString() : "Activo")</td>
+                <td>@(s.to_date == null ? "Vigente" : "Cerrado")</td>
+            </tr>
+        }
+    </tbody>
+</table>
